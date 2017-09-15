@@ -1,4 +1,4 @@
-# Indivative Phone Validator and Sanitizor
+# indicative Phone Validator and Sanitizor
 
 Easy phone number validation, parsing and formatting for [indicative](http://indicative.adonisjs.com/).
 
@@ -15,7 +15,7 @@ $ yarn add indicative-phone
 
 ## Validation example
 
-See [examples/validations.js](https://github.com/enniel/indivative-phone/tree/master/examples/validations.js)
+See [examples/validations.js](https://github.com/enniel/indicative-phone/tree/master/examples/validations.js)
 
 Supported types:
  - premium_rate
@@ -34,7 +34,7 @@ For more information about supported types see [libphonenumber-js](https://githu
 
 ## Sanitization example
 
-See [examples/sanitizors.js](https://github.com/enniel/indivative-phone/tree/master/examples/sanitizors.js)
+See [examples/sanitizors.js](https://github.com/enniel/indicative-phone/tree/master/examples/sanitizors.js)
 
 ## Credits
 

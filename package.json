@@ -1,7 +1,7 @@
 {
   "name": "indicative-phone",
   "version": "1.0.0",
-  "description": "Indivative phone validator",
+  "description": "indicative phone validator",
   "main": "src/index.js",
   "directories": {
     "test": "test"
