@@ -1,5 +1,7 @@
 # Indivative Phone Validator and Sanitizor
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/enniel/indicative-phone.svg)](https://greenkeeper.io/)
+
 Easy phone number validation, parsing and formatting for [indicative](http://indicative.adonisjs.com/).
 
 ## Installation
