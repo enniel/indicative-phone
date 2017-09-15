@@ -1,0 +1,54 @@
+{
+  "name": "indicative-phone",
+  "version": "1.0.0",
+  "description": "Indivative phone validator",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "_mocha test",
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "precommit": "npm run test && lint-staged",
+    "prepush": "npm run test && lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:fix",
+      "git add"
+    ]
+  },
+  "author": "Evgeny Razumov (enniel)",
+  "license": "MIT",
+  "dependencies": {
+    "indicative": "^3.0.0",
+    "libphonenumber-js": "^0.4.13",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "husky": "^0.13.4",
+    "lint-staged": "^4.0.0",
+    "mocha": "^3.4.2",
+    "standard": "^10.0.2"
+  },
+  "standard": {
+    "global": [
+      "it",
+      "describe"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enniel/indicative-phone.git"
+  },
+  "keywords": [
+    "phone",
+    "validation"
+  ],
+  "bugs": {
+    "url": "https://github.com/enniel/indicative-phone/issues"
+  },
+  "homepage": "https://github.com/enniel/indicative-phone#readme"
+}
