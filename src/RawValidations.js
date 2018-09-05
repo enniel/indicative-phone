@@ -1,13 +1,4 @@
-'use strict'
-
-/**
- * indicative-phone
- * Copyright(c) 2017 Evgeny Razumov
- * MIT Licensed
- */
-
-const libPhoneNumber = require('libphonenumber-js')
-const _ = require('lodash')
+import { isValidNumber, getNumberType } from 'libphonenumber-js'
 
 const TYPES = [
   'premium_rate',
@@ -24,24 +15,17 @@ const TYPES = [
 ]
 
 /**
- * @module Validations
- * @description List of schema validations
- * @type {Object}
- */
-let RawValidations = exports = module.exports = {}
-
-/**
  * @description validate phone number.
  * @method phone
  * @param  {Mixed} input
  * @return {Boolean}
  * @public
  */
-RawValidations.phone = function (input, ...args) {
+export const phone = (input, ...args) => {
   let country = 'US'
   let type = null
   if (args instanceof Array && args.length) {
-    if (_.includes(TYPES, args[0])) {
+    if (TYPES.includes(args[0])) {
       type = args[0]
     } else if (args[1]) {
       country = args[0]
@@ -50,12 +34,16 @@ RawValidations.phone = function (input, ...args) {
       country = args[0]
     }
   }
-  const isValid = libPhoneNumber.isValidNumber(input, country)
+  const isValid = isValidNumber(input, country)
   if (isValid && type) {
-    if (_.snakeCase(libPhoneNumber.getNumberType(input, country)) === type) {
+    if (getNumberType(input, country).toLowerCase() === type) {
       return true
     }
     return false
   }
   return isValid
+}
+
+export default {
+  phone
 }

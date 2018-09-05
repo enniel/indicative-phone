@@ -66,5 +66,9 @@ package-lock.json
 # dotenv environment variables file
 .env
 
+es
+lib
+dist
+
 
 # End of https://www.gitignore.io/api/node

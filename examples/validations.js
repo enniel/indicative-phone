@@ -1,16 +1,8 @@
-'use strict'
-
-/**
- * indicative-phone
- * Copyright(c) 2017 Evgeny Razumov
- * MIT Licensed
- */
-
 const indicative = require('indicative')
-const { Validations, RawValidations } = require('../src')
+const { Validations, RawValidations } = require('../')
 
-indicative.extend('phone', Validations.phone, '{{field}} is not valid phone number')
-indicative.is.extend('phone', RawValidations.phone)
+indicative.validations['phone'] = Validations.phone
+indicative.is['phone'] = RawValidations.phone
 
 // schema validation
 const rules = {

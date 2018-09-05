@@ -6,7 +6,7 @@
  * MIT Licensed
  */
 
-const { Validations } = require('../src')
+const { Validations } = require('../')
 const _ = require('lodash')
 const chai = require('chai')
 const expect = chai.expect

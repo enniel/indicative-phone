@@ -1,26 +1,11 @@
-'use strict'
+import { parse, format } from 'libphonenumber-js'
 
-/**
- * indicative-phone
- * Copyright(c) 2017 Evgeny Razumov
- * MIT Licensed
- */
-
-const libPhoneNumber = require('libphonenumber-js')
-const _ = require('lodash')
-
-const FORMATS = {
-  '!i': 'International',
-  '!n': 'National',
-  '!ip': 'International_plaintext'
-}
-
-/**
- * @module Sanitizors
- * @description List of sanitizors
- * @type {Object}
- */
-let Sanitizors = exports = module.exports = {}
+const FORMATS = [
+  'International',
+  'National',
+  'E.164',
+  'RFC3966'
+]
 
 /**
  * @description parse a phone number
@@ -30,7 +15,7 @@ let Sanitizors = exports = module.exports = {}
  * @return {String}
  * @public
  */
-Sanitizors.parsePhone = function (value, args) {
+export const parsePhone = (value, args) => {
   let country = 'US'
 
   if (args instanceof Array && args.length) {
@@ -41,7 +26,7 @@ Sanitizors.parsePhone = function (value, args) {
     return value
   }
 
-  const { phone } = libPhoneNumber.parse(value, country)
+  const { phone } = parse(value, country)
 
   return phone || value
 }
@@ -54,26 +39,20 @@ Sanitizors.parsePhone = function (value, args) {
  * @return {String}
  * @public
  */
-Sanitizors.formatPhone = function (value, args) {
+export const formatPhone = (value, args) => {
   const options = {
     country: 'US',
     format: 'International'
   }
 
   if (args instanceof Array && args.length) {
-    let country = 'US'
-    let format = '!i'
-    if (_.includes(_.keys(FORMATS), args[0])) {
-      format = args[0]
-    } else if (args[1]) {
-      country = args[0]
-      format = args[1]
+    if (FORMATS.includes(args[0])) {
+      options.format = args[0]
+    } else if (FORMATS.includes(args[1])) {
+      options.country = args[0]
+      options.format = args[1]
     } else {
-      country = args[0]
-    }
-    options.country = country
-    if (_.includes(_.keys(FORMATS), format)) {
-      options.format = FORMATS[format]
+      options.country = args[0]
     }
   }
 
@@ -81,5 +60,9 @@ Sanitizors.formatPhone = function (value, args) {
     return value
   }
 
-  return libPhoneNumber.format(value, options.country, options.format)
+  return format(value, options.country, options.format)
+}
+
+export default {
+  parsePhone, formatPhone
 }

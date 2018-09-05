@@ -1,33 +1,10 @@
-'use strict'
+import RawValidations from './RawValidations'
 
-/**
- * indicative-phone
- * Copyright(c) 2017 Evgeny Razumov
- * MIT Licensed
- */
-
-const Modes = require('indicative/src/Modes')
-const Raw = require('indicative/src/Raw')
-const RawValidations = require('./RawValidations')
-
-/**
- * @module Validations
- * @description List of schema validations
- * @type {Object}
- */
-let Validations = exports = module.exports = {}
-
-/**
- * @description figures out whether value can be skipped
- * or not from validation, as non-existing values
- * should be validated using required.
- * @method skippable
- * @param  {Mixed}  value
- * @return {Boolean}
- * @private
- */
-const skippable = function (value) {
-  return Modes.get() === 'strict' ? typeof value === 'undefined' : !Raw.existy(value)
+const existy = (input) => {
+  if (typeof (input) === 'string') {
+    return input.trim().length > 0
+  }
+  return (input !== null && input !== undefined)
 }
 
 /**
@@ -41,18 +18,21 @@ const skippable = function (value) {
  * @return {Object}
  * @public
  */
-Validations.phone = function (data, field, message, args, get) {
+export const phone = function (data, field, message, args, get) {
   return new Promise((resolve, reject) => {
     const fieldValue = get(data, field)
-    if (skippable(fieldValue)) {
+    if (!existy(fieldValue)) {
       resolve('validation skipped')
       return
     }
-    const isValid = RawValidations.phone(fieldValue, ...args)
-    if (isValid) {
+    if (typeof fieldValue === 'string' && RawValidations.phone(fieldValue, ...args)) {
       resolve('validation passed')
     } else {
       reject(message)
     }
   })
+}
+
+export default {
+  phone
 }

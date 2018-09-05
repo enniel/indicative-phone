@@ -1,16 +1,8 @@
-'use strict'
-
-/**
- * indicative-phone
- * Copyright(c) 2017 Evgeny Razumov
- * MIT Licensed
- */
-
 const indicative = require('indicative')
-const { Sanitizors } = require('../src')
+const { Sanitizors } = require('../')
 
-indicative.sanitizor.extend('parsePhone', Sanitizors.parsePhone)
-indicative.sanitizor.extend('formatPhone', Sanitizors.formatPhone)
+indicative.sanitizor['parsePhone'] = Sanitizors.parsePhone
+indicative.sanitizor['formatPhone'] = Sanitizors.formatPhone
 
 // schema sanitization
 const rules = {

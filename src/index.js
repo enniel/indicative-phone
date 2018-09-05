@@ -1,13 +1,3 @@
-'use strict'
-
-/**
- * indicative-phone
- * Copyright(c) 2017 Evgeny Razumov
- * MIT Licensed
- */
-
-module.exports = {
-  RawValidations: require('./RawValidations'),
-  Sanitizors: require('./Sanitizors'),
-  Validations: require('./Validations')
-}
+export { default as RawValidations } from './RawValidations'
+export { default as Sanitizors } from './Sanitizors'
+export { default as Validations } from './Validations'

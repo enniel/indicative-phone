@@ -1,12 +1,4 @@
-'use strict'
-
-/**
- * indicative-phone
- * Copyright(c) 2017 Evgeny Razumov
- * MIT Licensed
- */
-
-const { Sanitizors } = require('../src')
+const { Sanitizors } = require('../')
 const chai = require('chai')
 const expect = chai.expect
 
@@ -32,32 +24,32 @@ describe('Sanitizers', function () {
   })
 
   it('should format phone number with country code and international format', function () {
-    const sanitized = Sanitizors.formatPhone('8005553535', ['RU', '!i'])
+    const sanitized = Sanitizors.formatPhone('8005553535', ['RU', 'International'])
     expect(sanitized).to.equal('+7 800 555 35 35')
   })
 
   it('should format phone number with country code and national format', function () {
-    const sanitized = Sanitizors.formatPhone('8005553535', ['RU', '!n'])
+    const sanitized = Sanitizors.formatPhone('8005553535', ['RU', 'National'])
     expect(sanitized).to.equal('800 555-35-35')
   })
 
-  it('should format phone number with country code and international plaintext (E.164) format', function () {
-    const sanitized = Sanitizors.formatPhone('8005553535', ['RU', '!ip'])
+  it('should format phone number with country code and E.164 format', function () {
+    const sanitized = Sanitizors.formatPhone('8005553535', ['RU', 'E.164'])
     expect(sanitized).to.equal('+78005553535')
   })
 
   it('should format phone number without country code and with international format', function () {
-    const sanitized = Sanitizors.formatPhone('2133734253', ['!i'])
+    const sanitized = Sanitizors.formatPhone('2133734253', ['International'])
     expect(sanitized).to.equal('+1 213 373 4253')
   })
 
   it('should format phone number without country code and national format', function () {
-    const sanitized = Sanitizors.formatPhone('2133734253', ['!n'])
+    const sanitized = Sanitizors.formatPhone('2133734253', ['National'])
     expect(sanitized).to.equal('(213) 373-4253')
   })
 
-  it('should format phone number with country code and international plaintext (E.164) format', function () {
-    const sanitized = Sanitizors.formatPhone('2133734253', ['!ip'])
+  it('should format phone number with country code and E.164 format', function () {
+    const sanitized = Sanitizors.formatPhone('2133734253', ['E.164'])
     expect(sanitized).to.equal('+12133734253')
   })
 
