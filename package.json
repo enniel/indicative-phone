@@ -1,13 +1,16 @@
 {
   "name": "indicative-phone",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "indicative phone validator",
   "main": "lib/indicative-phone.js",
   "unpkg": "dist/indicative-phone.js",
   "module": "es/indicative-phone.js",
-  "directories": {
-    "test": "test"
-  },
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "src"
+  ],
   "scripts": {
     "test": "mocha test",
     "pretest": "npm run build:commonjs",
@@ -56,6 +59,15 @@
     "rollup-plugin-terser": "^1.0.1",
     "standard": "^10.0.2"
   },
+  "npmName": "indicative-phone",
+  "npmFileMap": [
+    {
+      "basePath": "/dist/",
+      "files": [
+        "*.js"
+      ]
+    }
+  ],
   "standard": {
     "global": [
       "it",
